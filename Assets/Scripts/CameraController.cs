@@ -14,8 +14,8 @@ public class CameraController : MonoBehaviour
 
     private bool _changingPosition = false;
 
-    private Quaternion _initialChangeRotation;
-    private Quaternion _endChangeRotation;
+    private Quaternion _initialRotation;
+    private Quaternion _endRotation;
 
     [SerializeField]
     private PlayerController _target;
@@ -25,6 +25,11 @@ public class CameraController : MonoBehaviour
         if (_target == null)
             _target = FindObjectOfType<PlayerController>();
 
+        SetInitialPosition();
+    }
+
+    private void SetInitialPosition()
+    {
         _positionChangeTime = _target.PositionChangeCooldownTime;
         _currentYPosition = _target.transform.position.y + _yOffset;
 
@@ -54,8 +59,8 @@ public class CameraController : MonoBehaviour
         _yOffset = -_yOffset;
         _xRotationOffset = -_xRotationOffset;
         _currentPositionChangeTime = 0;
-        _initialChangeRotation = transform.rotation;
-        _endChangeRotation = Quaternion.Euler(_xRotationOffset, 0, 0);
+        _initialRotation = transform.rotation;
+        _endRotation = Quaternion.Euler(_xRotationOffset, 0, 0);
     }
 
     private void ChangeCameraPosition()
@@ -73,13 +78,13 @@ public class CameraController : MonoBehaviour
     private void ConfirmCameraTransformValues()
     {
         transform.position = new Vector3(transform.position.x, _target.transform.position.y + _yOffset, _target.transform.position.z + _zOffset);
-        transform.rotation = _endChangeRotation;
+        transform.rotation = _endRotation;
         _currentYPosition = transform.position.y;
     }
 
     private void LerpCameraRotation()
     {
-        transform.rotation = Quaternion.Lerp(_initialChangeRotation, _endChangeRotation, _currentPositionChangeTime / _positionChangeTime);
+        transform.rotation = Quaternion.Lerp(_initialRotation, _endRotation, _currentPositionChangeTime / _positionChangeTime);
         _currentPositionChangeTime += Time.deltaTime;
     }
 

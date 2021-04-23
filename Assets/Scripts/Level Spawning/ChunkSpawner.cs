@@ -25,9 +25,7 @@ public class ChunkSpawner : MonoBehaviour
         if (_highwayPool == null) _highwayPool = FindObjectOfType<HighwayPool>();
         if (_particlePool == null) _particlePool = FindObjectOfType<ParticlePool>();
 
-
         _chunkSize = (int)(_chunkSize / _highwayPool.HighwayPieceLength) * _highwayPool.HighwayPieceLength;
-
 
         _chunkSpawnCheckpoint = GetComponent<BoxCollider>();
         _chunkSpawnCheckpoint.isTrigger = true;

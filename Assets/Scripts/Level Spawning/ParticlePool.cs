@@ -8,10 +8,7 @@ public class ParticlePool : MonoBehaviour
 
     private Queue<GameObject> _particleSystems = new Queue<GameObject>();
 
-    private void Awake()
-    {
-        AddParticleSystems(_initialParticleSystems);
-    }
+    private void Awake() => AddParticleSystems(_initialParticleSystems);
 
     private void AddParticleSystems(int num)
     {

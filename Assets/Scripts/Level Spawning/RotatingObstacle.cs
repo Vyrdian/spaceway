@@ -9,6 +9,11 @@ public class RotatingObstacle : Obstacle
     protected override void Start()
     {
         base.Start();
+        SetRandomRotation();
+    }
+
+    private void SetRandomRotation()
+    {
         _rotationSpeedX = Random.Range(-40f, 40f);
         _rotationSpeedY = Random.Range(-40f, 40f);
         _rotationSpeedZ = Random.Range(-40f, 40f);

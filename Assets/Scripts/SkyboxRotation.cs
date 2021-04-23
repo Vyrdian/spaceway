@@ -7,11 +7,13 @@ public class SkyboxRotation : MonoBehaviour
 
     void Start()
     {
-        _rotationSpeed = new Vector3(Random.Range(-_rotationSpeedMax, _rotationSpeedMax), Random.Range(-_rotationSpeedMax, _rotationSpeedMax), Random.Range(-_rotationSpeedMax, _rotationSpeedMax));
+        _rotationSpeed = new Vector3(RandomFloatBetweenPositiveAndNegative(_rotationSpeedMax), RandomFloatBetweenPositiveAndNegative(_rotationSpeedMax), RandomFloatBetweenPositiveAndNegative(_rotationSpeedMax));
     }
 
     void LateUpdate()
     {
         transform.rotation = Quaternion.Euler(transform.rotation.x + _rotationSpeed.x * Time.time, transform.rotation.y + _rotationSpeed.y * Time.time, transform.rotation.z + _rotationSpeed.z * Time.time);
     }
+
+    private float RandomFloatBetweenPositiveAndNegative(float value) => Random.Range(-value, value);
 }

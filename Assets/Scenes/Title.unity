@@ -1780,10 +1780,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1454724125}
-  - component: {fileID: 1454724127}
   - component: {fileID: 1454724126}
   m_Layer: 0
-  m_Name: Audio
+  m_Name: BGM
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1899,14 +1898,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!81 &1454724127
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1454724124}
-  m_Enabled: 1
 --- !u!1 &1482942286
 GameObject:
   m_ObjectHideFlags: 0
@@ -3072,3 +3063,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 84352fa22392e6b479fbe741509ef504, type: 3}
+--- !u!1 &801970416304290390 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 801970416321870593, guid: 84352fa22392e6b479fbe741509ef504,
+    type: 3}
+  m_PrefabInstance: {fileID: 801970416304290389}
+  m_PrefabAsset: {fileID: 0}
+--- !u!81 &801970416304290391
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 801970416304290390}
+  m_Enabled: 1

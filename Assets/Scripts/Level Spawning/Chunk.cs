@@ -33,35 +33,40 @@ public class Chunk : MonoBehaviour
         _highwayPool = highwayPool;
 
         SpawnHighway();
-        SpawnObstacles(firstChunk);       
+        SetObstacleSpawnPoints(firstChunk);       
     }
 
-    private void SpawnObstacles(bool firstChunk)
+    private void SetObstacleSpawnPoints(bool firstChunk)
     {
         float spawnStartPoint;
-        if (firstChunk) spawnStartPoint = ChunkCenter.z + _chunkLength / 2;
+        if (firstChunk) spawnStartPoint = ChunkCenter.z + _chunkLength / 4;
         else spawnStartPoint = ChunkCenter.z - _chunkLength / 2 + _obstacleSpawnDistanceMin;
 
         for (float f = spawnStartPoint; f < ChunkCenter.z + _chunkLength / 2;)
-            {
-                obstacleSpawnPoints.Clear();
-                int obstaclesToSpawn = Random.Range(_minObstaclesPerSpawnLocation, _maxObstaclesPerSpawnLocation);
-                for (int i = 0; i <= obstaclesToSpawn; i++)
-                {
-                    Obstacle obstacle = _obstaclePool.GetObstacle();
-                    Vector3 newObstaclePosition = new Vector3(_obstacleXPosValues[Random.Range(0, _obstacleXPosValues.Length)], _obstacleYPosValues[Random.Range(0, _obstacleYPosValues.Length)], f);
-                    while (obstacleSpawnPoints.Contains(newObstaclePosition))
-                    {
-                        newObstaclePosition = new Vector3(_obstacleXPosValues[Random.Range(0, _obstacleXPosValues.Length)], _obstacleYPosValues[Random.Range(0, _obstacleYPosValues.Length)], f);
-                    }
-                    obstacleSpawnPoints.Add(newObstaclePosition);
-                    obstacle.transform.position = newObstaclePosition;
-                    obstacle.gameObject.SetActive(true);
-                    _obstacles.Add(obstacle);
-                }
+        {
+            obstacleSpawnPoints.Clear();
+            int obstaclesToSpawn = Random.Range(_minObstaclesPerSpawnLocation, _maxObstaclesPerSpawnLocation);
 
-                f += Random.Range(_obstacleSpawnDistanceMin, _obstacleSpawnDistanceMax);
+            for (int i = 0; i <= obstaclesToSpawn; i++)
+            {
+                SpawnObstacles(f);
             }
+            f += Random.Range(_obstacleSpawnDistanceMin, _obstacleSpawnDistanceMax);
+        }
+    }
+
+    private void SpawnObstacles(float spawnPoint)
+    {
+        Obstacle obstacle = _obstaclePool.GetObstacle();
+        Vector3 newObstaclePosition = new Vector3(_obstacleXPosValues[Random.Range(0, _obstacleXPosValues.Length)], _obstacleYPosValues[Random.Range(0, _obstacleYPosValues.Length)], spawnPoint);
+        while (obstacleSpawnPoints.Contains(newObstaclePosition))
+        {
+            newObstaclePosition = new Vector3(_obstacleXPosValues[Random.Range(0, _obstacleXPosValues.Length)], _obstacleYPosValues[Random.Range(0, _obstacleYPosValues.Length)], spawnPoint);
+        }
+        obstacleSpawnPoints.Add(newObstaclePosition);
+        obstacle.transform.position = newObstaclePosition;
+        obstacle.gameObject.SetActive(true);
+        _obstacles.Add(obstacle);
     }
 
     private void SpawnHighway()

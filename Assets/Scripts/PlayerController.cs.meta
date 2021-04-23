@@ -3,7 +3,10 @@ guid: 9a0a61efa3671c94e9082a2e4c156fcb
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - _deathParticles: {fileID: 8934035707256159700, guid: ef4a8e13a073d304dae3f3326c440a88,
+      type: 3}
+  - _shipGFX: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
